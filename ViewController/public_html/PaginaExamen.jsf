@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <af:document title="PaginaExamen.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:decorativeBox id="db1">
+                <f:facet name="top">
+                    <h:outputText value="Materias por Curso" id="ot1"/>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelSplitter id="ps1" orientation="vertical">
+                        <f:facet name="first">
+                            <af:table value="#{bindings.MateriasView1.collectionModel}" var="row"
+                                      rows="#{bindings.MateriasView1.rangeSize}"
+                                      emptyText="#{bindings.MateriasView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.MateriasView1.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.MateriasView1.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="#{bindings.MateriasView1.rangeSize}"
+                                      filterModel="#{bindings.MateriasView1Query.queryDescriptor}" filterVisible="true"
+                                      queryListener="#{bindings.MateriasView1Query.processQuery}" varStatus="vs"
+                                      id="t1" partialTriggers="::b1 ::b2 ::b3 ::b4">
+                                <af:column sortProperty="#{bindings.MateriasView1.hints.Nombre.name}" filterable="true"
+                                           sortable="true" headerText="#{bindings.MateriasView1.hints.Nombre.label}"
+                                           id="c1">
+                                    <af:outputText value="#{row.Nombre}"
+                                                   shortDesc="#{bindings.MateriasView1.hints.Nombre.tooltip}" id="ot3"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.MateriasView1.hints.Duracion.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.MateriasView1.hints.Duracion.label}" id="c2">
+                                    <af:outputText value="#{row.Duracion}"
+                                                   shortDesc="#{bindings.MateriasView1.hints.Duracion.tooltip}"
+                                                   id="ot4">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.MateriasView1.hints.Duracion.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                            </af:table>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:panelFormLayout id="pfl1">
+                                <af:inputText value="#{bindings.Nombre.inputValue}"
+                                              label="#{bindings.Nombre.hints.label}"
+                                              required="#{bindings.Nombre.hints.mandatory}"
+                                              columns="#{bindings.Nombre.hints.displayWidth}"
+                                              maximumLength="#{bindings.Nombre.hints.precision}"
+                                              shortDesc="#{bindings.Nombre.hints.tooltip}" id="it1">
+                                    <f:validator binding="#{bindings.Nombre.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.Duracion.inputValue}"
+                                              label="#{bindings.Duracion.hints.label}"
+                                              required="#{bindings.Duracion.hints.mandatory}"
+                                              columns="#{bindings.Duracion.hints.displayWidth}"
+                                              maximumLength="#{bindings.Duracion.hints.precision}"
+                                              shortDesc="#{bindings.Duracion.hints.tooltip}" id="it2">
+                                    <f:validator binding="#{bindings.Duracion.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Duracion.format}"/>
+                                </af:inputText>
+                                <f:facet name="footer">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl1">
+                                        <af:button actionListener="#{bindings.First.execute}" text="First"
+                                                   disabled="#{!bindings.First.enabled}" partialSubmit="true" id="b1"/>
+                                        <af:button actionListener="#{bindings.Previous.execute}" text="Previous"
+                                                   disabled="#{!bindings.Previous.enabled}" partialSubmit="true"
+                                                   id="b2"/>
+                                        <af:button actionListener="#{bindings.Next.execute}" text="Next"
+                                                   disabled="#{!bindings.Next.enabled}" partialSubmit="true" id="b3"/>
+                                        <af:button actionListener="#{bindings.Last.execute}" text="Last"
+                                                   disabled="#{!bindings.Last.enabled}" partialSubmit="true" id="b4"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelFormLayout>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+            </af:decorativeBox>
+        </af:form>
+    </af:document>
+</f:view>

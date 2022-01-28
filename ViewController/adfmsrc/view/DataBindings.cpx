@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.22.48" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="Generic">
+  <pageMap>
+    <page path="/PaginaExamen.jsf" usageId="view_PaginaExamenPageDef"/>
+    <page path="/Cursos.jsf" usageId="view_CursosPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_PaginaExamenPageDef" path="view.pageDefs.PaginaExamenPageDef"/>
+    <page id="view_CursosPageDef" path="view.pageDefs.CursosPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleDataControl" Package="model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

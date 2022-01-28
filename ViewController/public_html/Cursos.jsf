@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Cursos.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelBox text="PanelBox1" id="pb1">
+                        <f:facet name="toolbar"/>
+                        <af:panelFormLayout id="pfl1">
+                            <af:inputText value="#{bindings.Nombre.inputValue}" label="#{bindings.Nombre.hints.label}"
+                                          required="#{bindings.Nombre.hints.mandatory}"
+                                          columns="#{bindings.Nombre.hints.displayWidth}"
+                                          maximumLength="#{bindings.Nombre.hints.precision}"
+                                          shortDesc="#{bindings.Nombre.hints.tooltip}" id="it1">
+                                <f:validator binding="#{bindings.Nombre.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Duracion.inputValue}"
+                                          label="#{bindings.Duracion.hints.label}"
+                                          required="#{bindings.Duracion.hints.mandatory}"
+                                          columns="#{bindings.Duracion.hints.displayWidth}"
+                                          maximumLength="#{bindings.Duracion.hints.precision}"
+                                          shortDesc="#{bindings.Duracion.hints.tooltip}" id="it2">
+                                <f:validator binding="#{bindings.Duracion.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.Duracion.format}"/>
+                            </af:inputText>
+                            <f:facet name="footer">
+                                <af:panelGroupLayout layout="vertical" id="pgl1">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                        <af:button actionListener="#{bindings.First.execute}" text="First"
+                                                   disabled="#{!bindings.First.enabled}" partialSubmit="true" id="b1"/>
+                                        <af:button actionListener="#{bindings.Previous.execute}" text="Previous"
+                                                   disabled="#{!bindings.Previous.enabled}" partialSubmit="true"
+                                                   id="b2"/>
+                                        <af:button actionListener="#{bindings.Next.execute}" text="Next"
+                                                   disabled="#{!bindings.Next.enabled}" partialSubmit="true" id="b3"/>
+                                        <af:button actionListener="#{bindings.Last.execute}" text="Last"
+                                                   disabled="#{!bindings.Last.enabled}" partialSubmit="true" id="b4"/>
+                                    </af:panelGroupLayout>
+                                    <af:button text="Agregar" id="b5"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelFormLayout>
+                    </af:panelBox>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>
